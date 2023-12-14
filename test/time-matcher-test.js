@@ -92,7 +92,7 @@ describe('TimeMatcher', () => {
             assert.isTrue(matcher.match(new Date(2018, 0, 1, 0, 6, 0)));
             assert.isFalse(matcher.match(new Date(2018, 0, 1, 0, 7, 0)));
         });
-        
+
         it('should accept multiple values for hour', () => {
             let matcher = new TimeMatcher('0 0 5,6 * * *');
             assert.isTrue(matcher.match(new Date(2018, 0, 1, 5, 0, 0)));
@@ -186,7 +186,7 @@ describe('TimeMatcher', () => {
             assert.isTrue(matcher.match(new Date(2018, 0, 1, 0, 6, 0)));
             assert.isFalse(matcher.match(new Date(2018, 0, 1, 0, 7, 0)));
         });
-        
+
         it('should accept step values for hour', () => {
             let matcher = new TimeMatcher('0 0 */2 * * *');
             assert.isTrue(matcher.match(new Date(2018, 0, 1, 2, 0, 0)));
@@ -237,7 +237,7 @@ describe('TimeMatcher', () => {
                 const pattern = expected.second() + ' ' + expected.minute() + ' ' + expected.hour() + ' ' + expected.date() + ' ' + (expected.month()+1) + ' ' + expected.day();
                 const matcher = new TimeMatcher(pattern, allTimeZone[zone]);
                 const utcTime = new Date(tmp.year(), tmp.month(), tmp.date(), tmp.hour(), tmp.minute(), tmp.second(), tmp.millisecond());
-                assert.isTrue(matcher.match(utcTime));
+                assert.isTrue(matcher.match(utcTime), 'Failed for timezone ' + allTimeZone[zone]);
             }
         });
     });
